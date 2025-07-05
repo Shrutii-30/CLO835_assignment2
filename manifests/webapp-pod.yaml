@@ -3,25 +3,22 @@ kind: Pod
 metadata:
   name: webapp-pod
   labels:
-    app: webapp 
-  namespace: webapp-ns
+    app: webapp
 spec:
-  imagePullSecrets:
-  - name: ecr-registry-secret
   containers:
   - name: webapp
     image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/webapp:v2
-    imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 8080
     env:
-    - name: DBPWD
-      value: "password"
-    - name: DBHOST 
-      value: "mysql-service.mysql-ns.svc.cluster.local"  
-    - name: DBUSER
-      value: "root"
+    - name: DBHOST
+      value: "10.244.0.8"  
     - name: DBPORT
       value: "3306"
-    - name: DATABASE
-      value: "employees"
+    - name: DBUSER
+      value: "root"  
+    - name: DBPWD
+      value: "root"
+  imagePullSecrets:
+  - name: ecr-secret
+      

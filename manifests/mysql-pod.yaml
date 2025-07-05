@@ -4,16 +4,15 @@ metadata:
   name: mysql-pod
   labels:
     app: mysql
-  namespace: mysql-ns
 spec:
-  imagePullSecrets:
-  - name: ecr-registry-secret
   containers:
   - name: mysql
     image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
-    imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 3306
     env:
     - name: MYSQL_ROOT_PASSWORD
-      value: "password"
+      value: root
+  imagePullSecrets:
+  - name: ecr-secret
+      
