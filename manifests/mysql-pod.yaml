@@ -4,7 +4,6 @@ metadata:
   name: webapp-pod
   labels:
     app: webapp 
-  namespace: webapp-ns
 spec:
   imagePullSecrets:
   - name: ecr-registry-secret
