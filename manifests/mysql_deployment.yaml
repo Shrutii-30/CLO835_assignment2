@@ -1,14 +1,16 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment               
 metadata:
-  name: mysql-rs
+  name: mysql-deployment
   namespace: mysql-ns
+  labels:
+    app: mysql
 spec:
-  replicas: 1
+  replicas: 1                  
   selector:
     matchLabels:
       app: mysql
-  template:
+  template:                    
     metadata:
       labels:
         app: mysql
@@ -17,9 +19,10 @@ spec:
       - name: ecr-registry-secret
       containers:
       - name: mysql
-        image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
+        image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/mysql:v1 
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3306
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "password"
+          value: "password" 

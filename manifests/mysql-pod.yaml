@@ -1,26 +1,19 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: webapp-pod
+  name: mysql-pod
   labels:
-    app: webapp 
+    app: mysql
+  namespace: mysql-ns
 spec:
   imagePullSecrets:
   - name: ecr-registry-secret
   containers:
-  - name: webapp
-    image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/webapp:v2
+  - name: mysql
+    image: 601387777514.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
     imagePullPolicy: IfNotPresent
     ports:
-    - containerPort: 8080
+    - containerPort: 3306
     env:
-    - name: DBPWD
+    - name: MYSQL_ROOT_PASSWORD
       value: "password"
-    - name: DBHOST 
-      value: "mysql-service.mysql-ns.svc.cluster.local"  
-    - name: DBUSER
-      value: "root"
-    - name: DBPORT
-      value: "3306"
-    - name: DATABASE
-      value: "employees"
