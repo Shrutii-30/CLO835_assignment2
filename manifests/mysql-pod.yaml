@@ -15,6 +15,6 @@ spec:
       value: root
     - name: DBPORT
       value: "3306"
-imagePullSecrets:
-- name: ecr-secret
+  imagePullSecrets:
+  - name: ecr-secret
       
