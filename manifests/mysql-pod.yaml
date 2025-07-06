@@ -13,6 +13,8 @@ spec:
     env:
     - name: MYSQL_ROOT_PASSWORD
       value: root
+    - name: DBPORT
+      value: "3306"
   imagePullSecrets:
   - name: ecr-secret
       
